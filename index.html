@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Weather Prediction</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>AI-Based Weather Prediction</h1>
+
+    <form action="/predict" method="post">
+        Precipitation: <input type="number" step="0.1" name="precipitation" required><br>
+        Temp Max: <input type="number" step="0.1" name="temp_max" required><br>
+        Temp Min: <input type="number" step="0.1" name="temp_min" required><br>
+        Wind: <input type="number" step="0.1" name="wind" required><br>
+        Weather Encoded (0,1,2..): <input type="number" name="weather_encoded" required><br>
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction_text %}
+    <h2>Prediction Result:</h2>
+    <p>Cluster: {{ prediction_text['cluster'] }}</p>
+    <p>Weather Type: {{ prediction_text['weather_type'] }}</p>
+    <p>Predicted Temperature: {{ prediction_text['predicted_temperature'] }} °C</p>
+    {% endif %}
+</body>
+</html>
